@@ -1,0 +1,22 @@
+Problem 3110 Score of a string
+
+My code:
+
+class Solution:
+    def scoreOfString(self, s: str) -> int:
+        tot=0
+        for i in range(0,len(s)-1):
+            temp= ord(s[i])-ord(s[i+1])
+            tot+=math.fabs(temp)
+        return int(tot)
+
+
+Better code:
+
+class Solution:
+    def scoreOfString(self, s: str) -> int:
+        
+        total=0
+        for i in range(0,len(s)-1):
+            total += abs(ord(s[i]) - ord(s[i+1]))
+        return total
