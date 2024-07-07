@@ -1,0 +1,33 @@
+My soln ( without converting into string ):
+
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if (x<0):
+            result=False
+        else:
+            rev=0
+            org=x
+            while(x>0):
+                rem=x%10
+                rev=rev*10+rem
+                quo=x//10
+                x=quo
+            if (rev==org):
+                result=True
+            else:
+                result=False
+        return result
+
+
+
+
+Better soln (convert into str and reverse):
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        x = str(x)
+        if x == x[::-1]:
+            return True
+        else:
+            return False
