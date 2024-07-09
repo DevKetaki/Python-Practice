@@ -1,0 +1,41 @@
+My solution - O(nlogn)
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        hashmap={}
+        lst=[]
+        res=[]
+        for i in nums:
+            if i in hashmap:
+                hashmap[i]+=1
+            else:
+                hashmap[i]=1
+        
+        for f,v in hashmap.items():
+            lst.append([v,f])
+        lst.sort(reverse=True)
+        for i in range(0,k):
+            res.append(lst[i][1])
+        return res
+
+
+Better soln (using bucket sort- O(n))
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        hashmap = {}
+        arr = []
+        for i in range(len(nums) + 1):
+            arr.append([])
+
+        for i in nums:
+            hashmap[i] = hashmap.get(i, 0) + 1
+        for i in hashmap:
+            arr[hashmap[i]].append(i)
+        
+        res = []
+        for i in range(len(arr) - 1, 0, -1):
+            for j in arr[i]:
+                res.append(j)
+                if len(res) == k:
+                    return res
