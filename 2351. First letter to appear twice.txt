@@ -1,0 +1,10 @@
+My solution- O(N)
+
+class Solution:
+    def repeatedCharacter(self, s: str) -> str:
+        dct={}
+        for l in s:
+            if l in dct:
+                return l
+            else:
+                dct[l]=1
