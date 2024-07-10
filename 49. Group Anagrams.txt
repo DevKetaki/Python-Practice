@@ -1,0 +1,29 @@
+My solution O(N mlogm):
+The code iterates through each word in the input list of strings, which has a length of n. For each word, it sorts the characters, which takes O(m*log(m)) time complexity, where m is the length of the word. Therefore, the overall time complexity is O(n*m*log(m)).
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        hashmap={}
+        for word in strs:
+            tmp=''.join(sorted(word))
+            if tmp in hashmap:
+                hashmap[tmp].append(word)
+            else:
+                hashmap[tmp]=[]
+                hashmap[tmp]=[word]
+        return list(hashmap.values())
+       
+
+Better soln : O(Nm)
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        found = defaultdict(list)
+        for word in strs:
+            res = [0] * 26
+            for letter in word:
+                res[ord(letter)- ord('a')] += 1
+            
+            found[tuple(res)].append(word)
+
+        return found.values()
