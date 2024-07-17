@@ -1,0 +1,36 @@
+Brute force approach - O(sqrt(n))
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        n=x//2 + 1
+        i=0
+        while (i<=n):
+            sq=i*i
+            if (sq)<x:
+                i=i+1
+            elif(sq)==x:
+                return (i)
+            else:
+                break
+        return (i-1)   
+
+    
+        
+    
+Binary search- method-O(log n) better than O(sqrt n)
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if (x<2):
+            return x
+        l=1
+        r=x//2
+        while (l<=r):
+            mid=(l+r)// 2
+            sq=mid*mid
+            if(sq>x):
+                r=mid-1
+            elif(sq<x):
+                l=mid+1
+            else:
+                return mid
+        return r
