@@ -1,0 +1,35 @@
+Solution-1- O(n)= involves lot of math calculation
+
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows==1:
+            return s
+        else:
+            final=""
+            for row in range(0,numRows):
+                skip=2*(numRows-1)
+                for i in range(row,len(s),skip):
+                    final+=s[i]
+                    if(row>0 and row<numRows-1 and i+skip-(2*row)<len(s)):
+                        final+=s[i+skip-(2*row)]
+            return final
+
+
+
+smarter solution: O(n)- 
+
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        rows = [''] * numRows
+        ans = ''
+        current =0
+        direction = -1
+        if numRows == 1 or numRows >= len(s):
+            return s
+        for letter in s:
+            rows[current] += letter
+            #change the direction when we come to 0th or last row
+            if current == 0 or current == numRows - 1:
+                direction *= -1
+            current += direction
+        return ''.join(rows)
