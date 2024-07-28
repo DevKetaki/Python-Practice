@@ -1,0 +1,32 @@
+Space- O(1), time complexity- O(nlogn)[ due to sort]
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        n=len(nums)
+        for i in range(0,n):
+            if nums[i]!=i:
+                return i
+        return n
+
+Space= O(n), time complexity- O(n)
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+   
+       p=set(nums)
+       n=len(nums)
+       q=set(range(0,n+1))
+       val=list(q.difference(p))
+       return (int(str(val[0])))
+
+
+
+
+Best Solution using simple math formula- sum of first n natural numbers: here space complexity= O(1) and time complexity= O(n)
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        l=len(nums)
+        s=l*(l+1)//2
+        p=sum(nums)
+        return s-p
