@@ -1,0 +1,46 @@
+O(nm)
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        lenmin=200
+        i=-1
+        pos=-1
+        j=0
+        commonlist=[]
+        for estr in strs:
+            i=i+1
+            if(len(estr)<lenmin):
+                lenmin=len(estr)
+                pos=i
+        wordmin=strs[pos]
+        while j<lenmin:
+            cnt=0
+            for word in strs:
+                if(wordmin[j]==word[j]):
+                    cnt+=1
+                else:
+                    break
+            if cnt==len(strs):
+                commonlist.append(wordmin[j])
+                j=j+1
+            else:
+                break
+        commonstr=''.join(commonlist)
+        return commonstr
+
+
+
+O(nm)
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+
+        min_length = min(strs, key=len)
+        res = ""
+
+        for i in range(len(min_length)):
+            for j in strs:
+                if j[i] != strs[0][i]:
+                    return res
+            
+            res += strs[0][i]
+        
+        return res
