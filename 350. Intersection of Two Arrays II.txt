@@ -1,0 +1,34 @@
+Brute Force approach- O(n^2)
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        list1len=len(nums1)
+        list2len=len(nums2)
+        result=[]
+        if list1len<= list2len:
+            complist=nums1
+            ncomplist=nums2
+        else:
+            complist=nums2
+            ncomplist=nums1
+        for i in complist:
+            if (i in complist) and (i in ncomplist):
+                result.append(i)
+                ncomplist.remove(i)                
+        return result
+
+
+
+
+Optimal Solution O(n+m)
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        count1 = Counter(nums1)
+        count2 = Counter(nums2)
+        intersection = (count1 & count2).elements()
+        return list(intersection)
+
+
+
+
+
