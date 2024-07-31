@@ -1,0 +1,32 @@
+Brute Force - O(N^2)
+import copy
+class Solution:
+    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        if len(hand) % groupSize !=0:
+            return False 
+        else:
+            handcopy= copy.deepcopy(hand)
+            lst=[]
+            hand.sort()
+            for k in hand: 
+                l=[]
+                for i in range(0,groupSize):
+                    if(k+i) in handcopy:
+                        l.append(k+i)
+                        handcopy.remove(k+i)
+                    else:
+                        break
+                lst.append(l)
+            for p in lst:
+                    if len(p)>0 and len(p)<groupSize:
+                        return False
+            if(len(handcopy)>0):
+                return False
+            else:
+                return True
+
+
+
+
+
+
