@@ -1,0 +1,20 @@
+Simple solution- O(n)
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l=[]
+        for letter in s:
+            if(letter.isalnum()):
+                l.append((letter.lower()))
+        if (l[:]==l[::-1]):
+            return True
+        else:
+            return False
+
+using comprehension- O(n)
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = "".join([s_ for s_ in s if s_.isalnum()]).lower()
+        print(s)
+        return s == s[::-1]
