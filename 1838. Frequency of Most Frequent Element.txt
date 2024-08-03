@@ -1,0 +1,17 @@
+Brute force soln- O(n^2)- exceeds time limit for huge inputs..- 56/73 test cases passed
+class Solution:
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        mfreq=1
+        nums.sort(reverse=True)
+        for i in range (0,len(nums)):
+            value=nums[i]
+            kc=k
+            freq=1
+            for j in range(i+1,len(nums)):
+                if ((value-nums[j])<=kc):
+                    freq=freq+1
+                    kc=kc-(value-nums[j])
+                else:
+                    break
+            mfreq=max(mfreq,freq)
+        return mfreq
