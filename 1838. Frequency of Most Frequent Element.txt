@@ -15,3 +15,21 @@ class Solution:
                     break
             mfreq=max(mfreq,freq)
         return mfreq
+
+
+
+Using sorting and Sliding Window-O(nlogn)
+
+class Solution:
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        left,right=0,0
+        result, totsum=0,0
+        while(right<len(nums)):
+            totsum+=nums[right]
+            while nums[right]*(right-left+1) > totsum+k:
+                totsum-=nums[left]
+                left=left+1
+            result= max(result, right-left+1)
+            right=right+1
+        return result
