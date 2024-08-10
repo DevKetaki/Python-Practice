@@ -1,0 +1,35 @@
+Brute Force solution with TC= O(n log n)
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        ans=[]
+        for i in range(0,n+1):
+            num=i
+            temp=[]
+            while(num>0):
+                rem=num%2
+                temp.append(rem)
+                num=num//2
+            c=temp.count(1)
+            ans.append(c)
+        return ans
+
+
+Optimized solution with TC= O(n)
+import math
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        d={0:0}
+        for i in range(0,17):
+            v=int(math.pow(2,i))
+            d[v]=1
+        for j in range(3,n+1):
+            c=0
+            p=int(math.log2(j))
+            val=2**p
+            rem=j-val
+            c=d[val]+d[rem]
+            d[j]=c
+        l=[]
+        for k in range(0,n+1):
+            l.append(d.get(k))
+        return l
