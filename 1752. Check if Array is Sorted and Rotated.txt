@@ -1,0 +1,40 @@
+Brute Force solution- O(N*logN):
+
+import copy
+class Solution:
+    def check(self, nums: List[int]) -> bool:
+        if(nums==sorted(nums)):
+            return True
+        length=len(nums)
+        if(length==2):
+            return True
+        for i in range(0,length):
+            if nums[i]>nums[i+1]:
+                pos=i
+                break
+        newnums=copy.deepcopy(nums)
+        newnums.sort()
+        for i in range(0,length):
+            rp=(length-1-pos+i)%length
+            if not (nums[i]==newnums[(rp)]):
+                return False
+        return True
+        
+
+
+Smarter solution with observation- if the array needs to be rotated just 1 at max, only then it is True, else it is false. How to know how many times to rotate?- ans is count the times when the previous number is greater than the next number in the array.
+
+eg: nums=[2,1,3,4] then : 4 at  -1 is greater than  2 at 0, 
+			  2 at  0 is greater than  1 at 1   (count=2) therefore false
+
+eg: nums=[3,4,5,1,2] then :5 at  2 is greater than  1 at 3  (count=1) therefore True
+
+
+class Solution:
+    def check(self, nums: List[int]) -> bool:
+        count = 0
+        # We need to check if nums[-1] > nums[0]
+        for i in range(len(nums)):
+            if nums[i - 1] > nums[i]:
+                count += 1
+        return count <= 1
