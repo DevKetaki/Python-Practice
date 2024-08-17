@@ -1,0 +1,18 @@
+Simple solution with TC= O(n)- sliding window approach
+
+class Solution:
+    def maxPower(self, s: str) -> int:
+        p=0
+        listofstr=list(s)
+        l=0
+        r=0
+        if(len(listofstr)==1):
+            return 1
+        for i in range(1,len(listofstr)):
+            if(listofstr[i]==listofstr[i-1]):
+                r=r+1
+            else:
+                r=r+1
+                l=r
+            p=max(p,(r-l+1))
+        return p
