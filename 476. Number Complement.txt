@@ -1,0 +1,13 @@
+TC- O(n)
+class Solution:
+    def findComplement(self, num: int) -> int:
+        lobits=list(bin(num))
+        templ=[]
+        for i in lobits[2:]:
+            if(i=='0'):
+                templ.append('1')
+            else:
+                templ.append('0')
+        bincomp=''.join(templ)
+        val=int(bincomp,2)
+        return val
