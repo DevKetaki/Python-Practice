@@ -1,0 +1,12 @@
+Time complexity- O(n)
+class Solution:
+    def reversePrefix(self, word: str, ch: str) -> str:
+        pos=word.find(ch)
+        temp=word[pos+1:]
+        news=""
+        if(pos!=-1):
+            while(pos>=0):
+                news+=word[pos]
+                pos-=1
+        news+=temp
+        return news
