@@ -1,0 +1,13 @@
+
+optimal approach- O(n)- use hash map
+
+class Solution:
+    def duplicateNumbersXOR(self, nums: List[int]) -> int:
+        hashmap={}
+        for i in nums:
+            hashmap[i]=hashmap.get(i,0)+1
+        result=0
+        for k,v in hashmap.items():
+            if v==2:
+                result=result^k
+        return result
