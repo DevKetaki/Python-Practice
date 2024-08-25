@@ -1,0 +1,37 @@
+Brute Force method- O(n^2)
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        loft=list(t)
+        for letter in s:
+            if letter in loft:
+                loft.remove(letter)
+        return loft[0]
+
+
+
+Better solution- O(nlogn)
+
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        loft=list(t)
+        lofs=list(s)
+        loft.sort()
+        lofs.sort()
+        for i in range(len(s)):
+            if(lofs[i]!=loft[i]):
+                return loft[i]
+        return loft[-1]
+
+Optimal solution- O(2n)
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        sbitsum=0
+        tbitsum=0
+        for i in s:
+            temp=ord(i)
+            sbitsum=sbitsum+temp
+        for j in t:
+            tempt=ord(j)
+            tbitsum=tbitsum+tempt
+        diff=tbitsum-sbitsum
+        return chr(diff)
