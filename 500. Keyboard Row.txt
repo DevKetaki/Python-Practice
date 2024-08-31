@@ -1,0 +1,36 @@
+
+Solution with TC- O(n*m)
+
+class Solution:
+    def findWords(self, words: List[str]) -> List[str]:
+        hashmap={}
+        l=[]
+        for i in "qwertyuiop":
+            hashmap[i]=1
+        for j in "asdfghjkl":
+            hashmap[j]=2
+        for k in "zxcvbnm":
+            hashmap[k]=3
+        for word in words:
+            setofrows=set()
+            temp=word.lower()
+            for w in temp:
+                setofrows.add(hashmap[w])
+            if len(setofrows)==1:
+                l.append(word)
+        return l
+
+
+Better approach- with TC= O(n)
+class Solution:
+    def findWords(self, words: List[str]) -> List[str]:
+        row_1 = "qwertyuiop"
+        row_2 = "asdfghjkl"
+        row_3 = "zxcvbnm"
+        res = []
+        for word in words:
+            w = word.lower()
+            if len(row_1) == len(set(w + row_1)) \
+                or len(row_2) == len(set(w + row_2)) or len(row_3) == len(set(row_3 + w)):
+                res.append(word)
+        return res
