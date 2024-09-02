@@ -1,0 +1,15 @@
+optimal solution:
+TC- O(n)
+
+class Solution:
+    def chalkReplacer(self, chalk: List[int], k: int) -> int:
+        s=sum(chalk)
+        p=k%s
+        j=0
+        for i in chalk:
+            if(p>=i):
+                p=p-i
+                j=j+1
+            elif(p<i):
+                break
+        return j%len(chalk)
