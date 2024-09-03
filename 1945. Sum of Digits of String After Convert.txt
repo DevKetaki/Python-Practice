@@ -1,0 +1,38 @@
+Time complexity- O(k*n)
+class Solution:
+    def getLucky(self, s: str, k: int) -> int:
+        alphabets=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+        alphamap={}
+        i=0
+        for bet in alphabets:
+            i=i+1
+            alphamap[bet]=i
+        temps=""
+        for eachalpha in s:
+            temps=temps+str(alphamap[eachalpha]) 
+        while (k>0):
+            val=0
+            for p in temps:
+                val=val+int(p)
+            temps=str(val)
+            k=k-1
+        return int(temps)
+
+
+concise code:
+
+class Solution:
+    def getLucky(self, s: str, k: int) -> int:
+        new_str = ""
+        for i in s:
+            curr = ord(i) - ord('a') + 1
+            new_str += str(curr)
+        print(new_str)
+        for _ in range(k):
+            sums = sum(int(digit) for digit in new_str)  # Sum all digits in the string
+            new_str = str(sums)  # Convert the sum back to a string to repeat the process
+
+        return int(new_str)
+        return x
+        
+        
