@@ -1,0 +1,13 @@
+Time complexity- O(n)
+class Solution:
+    def construct2DArray(self, original: List[int], m: int, n: int) -> List[List[int]]:
+        if (m*n)!=len(original):
+            return []
+        else:
+            i=0
+            final=[]
+            while i<len(original):
+                t=original[i:i+n]
+                final.append(t)
+                i=i+n
+            return final
