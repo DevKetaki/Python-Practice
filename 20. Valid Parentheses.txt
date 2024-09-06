@@ -1,0 +1,25 @@
+Stack implementation with time complexity: O(n)
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        l=[]
+        if len(s)%2 !=0:
+            return False
+        for p in s:
+            if p=='(' or p=='{' or p=='[':
+                l.append(p)
+            elif len(l)==0 and p in (')','}',']'):
+                l.append(p)
+            elif p==')' and l[-1]=='(':
+                l.pop()
+            elif p=='}' and l[-1]=='{':
+                l.pop()
+            elif p==']' and l[-1]=='[':
+                l.pop()
+            else:
+                l.append(p)
+        if len(l)==0:
+            return True
+        else:
+            return False
+        
