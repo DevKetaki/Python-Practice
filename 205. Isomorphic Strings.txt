@@ -1,0 +1,21 @@
+Time Complexity: O(n)
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        ss=set(s)
+        st=set(t)
+        i=0
+        d={}
+        if len(ss)!=len(st):
+            return False
+        else:
+            while i < len(s):
+                if s[i] not in d:
+                    d[s[i]]=t[i]
+                    i=i+1
+                elif s[i] in d:
+                    if d[s[i]]==t[i]:
+                        i=i+1
+                    else:
+                        return False
+            return True
